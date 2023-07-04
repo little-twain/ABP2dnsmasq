@@ -287,6 +287,7 @@ func main() {
 	processor := new_rule_processor()
 
 	output_file_path := flag.String("output", "", "The path of the output file")
+	address_ip := flag.String("address", "", "DNS result IP address")
 	input_file_url := flag.String("url", "", "The URL of the file to process")
 	additional_domains_file := flag.String("domain", "", "The file with additional domains to add")
 	dns_server_ip := flag.String("server", "", "DNS server IP address")
@@ -424,6 +425,9 @@ func main() {
 			if *ipset_name != "" {
 				line += fmt.Sprintf("\nipset=/%s/%s", domain, *ipset_name)
 			}
+		}
+		if *address_ip != "" {
+			line = fmt.Sprintf("address=/%s/%s", domain, *address_ip)
 		}
 		final_domain_list[i] = line
 	}
